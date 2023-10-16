@@ -8,14 +8,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      contacts: getContacts(), // Зчитуємо контакти з localStorage
+      contacts: getContacts(),
       filter: '',
       name: '',
       number: '',
     };
   }
 
-  // Додавання контакту до стану і збереження в localStorage
   addContact = (name, number) => {
     const existingContact = this.state.contacts.find(
       (contact) => contact.name.toLowerCase() === name.toLowerCase()
@@ -37,19 +36,18 @@ class App extends Component {
         contacts: [...prevState.contacts, newContact],
       }),
       () => {
-        saveContacts(this.state.contacts); // Зберігаємо контакти в localStorage
+        saveContacts(this.state.contacts);
       }
     );
   };
 
-  // Видалення контакту та оновлення localStorage
   deleteContact = (contactId) => {
     this.setState(
       (prevState) => ({
         contacts: prevState.contacts.filter((contact) => contact.id !== contactId),
       }),
       () => {
-        saveContacts(this.state.contacts); // Зберігаємо контакти в localStorage
+        saveContacts(this.state.contacts);
       }
     );
   };
